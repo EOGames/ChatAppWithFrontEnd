@@ -27,12 +27,12 @@ function App() {
 
   const SendMessage = () => {
     console.log('Msg Sent:' + message);
-    setMessage('')
+    // setMessage('')
     socket.emit('chat', message, roomName, userName);
   }
 
   useEffect(() => {
-    console.log("Chat updated::::::::;")
+  //  console.log("Chat updated::::::::;")
   }, [chats])
 
   socket.off('roomChat').on('roomChat', (msgObject) => {
@@ -62,14 +62,26 @@ function App() {
 
   return (
     <div className="App">
+            <h1 className="title"> Welcome Chater ! To Your Favourite Chatting App</h1>
 
       {
         logged ?
+        <div>
+          <div className="welcome_UserName"> 
+              <div className="inline_block">
+                Welcome <span>{userName.charAt(0).toUpperCase() +userName.slice(1)}</span>
+              </div> 
+              
+              <div className="inline_block float_right">
+                  Active Room: <span className="span1">{roomName}</span> 
+              </div>
+          </div>
           <div className="chatBoxHolder">
+           
             <div className="chatBox">
               <div className="chatBar">
                 <ul>
-                  {console.log("Chats:::::::::::", chats)}
+                  
                   {
                     chats.map((c, index) =>
                       <li key={index}>
@@ -90,11 +102,15 @@ function App() {
               <button id="sendMsgBtn" onClick={SendMessage}> Send</button>
             </div>
           </div>
+      </div>
+
           :
-          <div>
-            <input type="text" placeholder="Enter UserName" value={userName} onChange={(e) => setUserName(e.target.value)} />
-            <input type="text" placeholder="Enter RoomName" value={roomName} onChange={(e) => setRoomName(e.target.value)} />
-            <button onClick={HandleLogin}>Login</button>
+          <div className="loginMenuHolder">
+            <div className="loginMenu">
+              <input id="login_userName" type="text" placeholder="Enter UserName" value={userName} onChange={(e) => setUserName(e.target.value)} />
+              <input id="login_roomName" type="text" placeholder="Enter RoomName" value={roomName} onChange={(e) => setRoomName(e.target.value)} />
+              <button id="login_btn" onClick={HandleLogin}>Login</button>
+            </div>
           </div>
       }
 

@@ -21,16 +21,18 @@ code {
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
-    margin-top: 10%;
+    margin-top: 1%;
 
 }
 
 .chatBox
 {
-  border: 5px solid skyblue;
-  background-color: rgb(176, 214, 230);
-  width: 70%;
-  height: 70vh;
+    border: 5px solid skyblue;
+    background-color: rgb(176, 214, 230);
+    width: 70%;
+    height: 70vh;
+    margin: 5px;
+    box-shadow: 2px 2px 10px black;
 }
 
 #msgBoxAndButtonHolder
@@ -45,8 +47,7 @@ code {
 {
   width: 75%;
   background-color: rgb(255, 255, 255);
-  border: 5px solid skyblue;
-  box-shadow: 1px 1px 4px black;
+  border: 5px solid skyblue;  
 }
 
 .chatBar
@@ -96,4 +97,102 @@ span{
   font-weight: 900;
 }
 
+.loginMenuHolder
+{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  align-content: center;
+  margin-top: 25vh;
+}
+
+
+.loginMenu
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 5px solid skyblue;
+  height: 50vh;
+  width: 50%;
+  background-color: rgba(197, 197, 197, 0.322);
+}
+
+#login_userName
+{
+  width: 40%;
+  height: 7%;
+  text-align: center;
+  margin: 5px;
+  border: 0px;
+  box-shadow: 2px 2px 10px black;
+}
+
+#login_roomName
+{
+  height: 7%;
+  width: 40%;
+  text-align: center;
+  margin: 5px;
+  border: 0px;
+  box-shadow: 2px 2px 10px black;
+}
+
+#login_btn
+{
+  margin-top: 1%;
+  width: 20%;
+  font-size: 1.7vw;
+  height: 10%;
+  background-color: wheat;
+  margin: 5px;
+  border: 0px;
+  box-shadow: 2px 2px 10px black;
+}
+
+.title
+{
+    background-color: skyblue;
+    text-align: center;
+    color: wheat;
+    text-shadow: 1px 1px 5px black;
+    margin: 0px;
+    font-size: 200%;
+    height: 10%;
+    padding: 5px;
+    box-shadow: 2px 2px 7px black;
+    margin-bottom: 5px;
+    border-top: 5px solid rgb(103, 158, 179);
+    border-bottom: 5px solid rgb(103, 158, 179);
+
+}
+
+.welcome_UserName
+{
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    font-size: 4vh;
+    font-weight: 500;
+    background-color: grey;
+    padding: 5px;
+    border-top: 5px solid rgb(153, 153, 153);
+
+    border-bottom: 5px solid rgb(153, 153, 153);
+    box-shadow: 5px 5px 10px #262626;
+}
+
+.inline_block
+{
+  display: inline-block;
+}
+
+.float_right
+{
+  float: right;
+}
 
