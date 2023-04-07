@@ -79,4 +79,21 @@ li
   box-shadow: 1px 1px 4px black;
 }
 
+span{
+  color:  red;
+}
+.span1
+{
+  color: rgb(0, 183, 255);
+  text-shadow: 1px  1px 5px black;
+  font-weight: 900;
+}
+
+.span2
+{
+  color: rgb(255, 0, 0);
+  text-shadow: 1px  1px 5px black;
+  font-weight: 900;
+}
+
 

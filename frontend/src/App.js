@@ -1,9 +1,10 @@
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import {io} from 'socket.io-client';
 
 const socket = io('http://localhost:5000/');
 
-let data = [];
+let data =[];
+
 function App() {
   
   const [userName,setUserName] = useState('');
@@ -14,7 +15,8 @@ function App() {
   const [logged,setLogin] = useState(false);
 
   const [chats,setChats] = useState([]);
-  
+
+  let cla = '';
   
   const HandleLogin = ()=>
   {
@@ -27,25 +29,31 @@ function App() {
   const SendMessage = ()=>
   {
     console.log('Msg Sent:'+message);
-    socket.emit('chat',message,roomName);
+    socket.emit('chat',message,roomName,userName);
   }
 
  
-  socket.on('roomChat',(msg)=>
+  socket.off('roomChat').on('roomChat',(msgObject)=>
   {
-    console.log('Room Chat Received:' + msg);
-    let count = 0;
-    if (data.length >0)
-    {
-      count = data.length -1;
-      count +=1;      
-    }
+    console.log('Room Chat Received:' + msgObject);
+    
+   //  data = [];
+   data = chats;
+ 
+      let count = 0;
+      if (data.length >0)
+      {
+        count = data.length -1;
+        count +=1;      
+      } 
+        
+      data[count] = msgObject; 
 
-    data[count] = msg;
-
-    setChats(data);
-
-    console.log('Chats In Array ----'+chats + 'and Length Is '+chats.length);
+     
+       
+      setChats(data);
+      
+      console.log('Chats In Array ----'+chats + 'and Length Is '+chats.length );
   });
 
   
@@ -61,9 +69,13 @@ function App() {
                   <ul>
                     {
                       chats.map((c,index)=>                      
-                      <li key={index}>{c}</li>
+                      <li key={index}>
+
+                        ({c.userName === userName ?cla='span1':cla='span2'})
+                       <span className={cla}> {c.userName+':'}</span> {c.msg}  
+                      </li>  
                       ) 
-                    }
+                    } 
                   </ul>
               </div>
 

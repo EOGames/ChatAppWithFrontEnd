@@ -28,11 +28,15 @@ io.on('connection',(socket)=>
         console.log(socket.id + " Joined Room Name "+roomName);
     });
 
-    socket.on('chat',(msg,roomName)=>
+    socket.on('chat',(msg,roomName,userName)=>
     {
         console.log("RoomName"+ roomName +' MSG Recived:'+msg );
-
-        io.to(roomName).emit('roomChat',msg);
+        let chatobject = 
+        {
+            userName:userName,
+            msg: msg
+        }
+        io.to(roomName).emit('roomChat',chatobject);
     });
 });
 
