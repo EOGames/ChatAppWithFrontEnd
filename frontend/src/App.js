@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { io } from 'socket.io-client';
+import {NavLink} from 'react-router-dom';
 
 const socket = io('http://localhost:5000/');
 
@@ -16,9 +17,28 @@ function App() {
 
   const [chats, setChats] = useState([]);
 
-  let cla = '';
 
-  const HandleLogin = () => {
+  useEffect(()=>
+  {
+    if (localStorage.getItem('user')!== null)
+    {
+      let userData = JSON.parse(localStorage.getItem('user'));
+      setUserName(userData.userName);
+      setRoomName(userData.roomName);
+      socket.emit('join', userData.roomName);
+
+      setLogin(true);
+    }
+  },[]);
+  
+  const LogOut = ()=>
+  {
+    localStorage.clear();
+    setLogin(false);
+  }
+
+  const HandleLogin = () =>
+  {
     console.log(userName, roomName);
     setLogin(true);
 
@@ -28,7 +48,8 @@ function App() {
       userName: userName,
       roomName: roomName
     }
-
+    //session saved
+    localStorage.setItem('user',JSON.stringify(loginObject));
     socket.emit('join', roomName);
   }
 
@@ -38,9 +59,7 @@ function App() {
     socket.emit('chat', message, roomName, userName);
   }
 
-  // useEffect(() => {
-  // //  console.log("Chat updated::::::::;")
-  // }, [chats])
+  
 
   socket.off('roomChat').on('roomChat', (msgObject) => {
     console.log('Room Chat Received:' + msgObject);
@@ -79,6 +98,9 @@ function App() {
                 Welcome <span>{userName.charAt(0).toUpperCase() +userName.slice(1)}</span>
               </div> 
               
+              <div className="logOut inline_block">
+                  <NavLink onClick={LogOut} to={'/'}>[LogOut]</NavLink>
+              </div>
               <div className="inline_block float_right">
                   Active Room: <span className="span1">{roomName}</span> 
               </div>
