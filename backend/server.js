@@ -36,7 +36,7 @@ io.on('connection',(socket)=>
             userName:userName,
             msg: msg
         }
-        io.to(roomName).emit('roomChat',chatobject);
+        io.to(roomName).emit('roomChat',JSON.stringify(chatobject));
     });
 });
 
