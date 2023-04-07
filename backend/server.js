@@ -4,6 +4,10 @@ const cors = require('cors');
 app.use(cors());
 
 const http = require('http').Server(app);
+
+const botName ='(ADMIN)';
+    
+
 const io = require('socket.io')(http,
 {
     cors: 
@@ -22,10 +26,32 @@ io.on('connection',(socket)=>
         console.log("user Disconnected");
     });
 
-    socket.on('join',(roomName)=>
+    socket.on('join',(roomName,userName)=>
     {
         socket.join(roomName);
         console.log(socket.id + " Joined Room Name "+roomName);
+
+        // sending notifaction to users in same room that some one joined
+        let botObject =
+        {
+            userName: botName,
+            msg: `${userName} Joined Chat Room`
+        }
+        if (userName!== '')
+        {
+            io.to(roomName).emit('roomChat', JSON.stringify(botObject));
+        }
+    });
+
+    socket.on('left',(roomName,userName)=>
+    {
+        //sending notification to users in same room that some one left
+        let botObject =
+        {
+            userName: botName,
+            msg: `${userName} Left Chat Room`
+        }
+        io.to(roomName).emit('roomChat', JSON.stringify(botObject));
     });
 
     socket.on('chat',(msg,roomName,userName)=>
