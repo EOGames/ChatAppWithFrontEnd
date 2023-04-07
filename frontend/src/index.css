@@ -161,29 +161,32 @@ span{
     text-align: center;
     color: wheat;
     text-shadow: 1px 1px 5px black;
-    margin: 0px;
+    margin: 4px 0px;
     font-size: 200%;
-    height: 10%;
+    height: 15%;
     padding: 5px;
     box-shadow: 2px 2px 7px black;
-    margin-bottom: 5px;
-    border-top: 5px solid rgb(103, 158, 179);
-    border-bottom: 5px solid rgb(103, 158, 179);
 
+    /* border-top: 5px solid rgb(103, 158, 179); */
+    border: 5px solid rgb(103, 158, 179);
+    width: 95%;
+    margin: 5px auto;
+    border-radius: 7% 70%
 }
 
 .welcome_UserName
 {
-    color: white;
-    text-shadow: 1px 1px 5px black;
-    font-size: 4vh;
-    font-weight: 500;
-    background-color: grey;
-    padding: 5px;
-    border-top: 5px solid rgb(153, 153, 153);
-
-    border-bottom: 5px solid rgb(153, 153, 153);
-    box-shadow: 5px 5px 10px #262626;
+  color: white;
+  text-shadow: 1px 1px 5px black;
+  font-size: 4vh;
+  font-weight: 500;
+  background-color: grey;
+  padding: 5px;
+  border: 5px solid rgb(153, 153, 153);
+  box-shadow: 5px 5px 10px #262626;
+  width: 80%;
+  margin: 0 auto;
+  
 }
 
 .inline_block

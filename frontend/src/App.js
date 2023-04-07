@@ -22,6 +22,13 @@ function App() {
     console.log(userName, roomName);
     setLogin(true);
 
+    //for saving logging session
+    let loginObject = 
+    {
+      userName: userName,
+      roomName: roomName
+    }
+
     socket.emit('join', roomName);
   }
 
@@ -31,9 +38,9 @@ function App() {
     socket.emit('chat', message, roomName, userName);
   }
 
-  useEffect(() => {
-  //  console.log("Chat updated::::::::;")
-  }, [chats])
+  // useEffect(() => {
+  // //  console.log("Chat updated::::::::;")
+  // }, [chats])
 
   socket.off('roomChat').on('roomChat', (msgObject) => {
     console.log('Room Chat Received:' + msgObject);
