@@ -25,7 +25,7 @@ function App() {
       let userData = JSON.parse(localStorage.getItem('user'));
       setUserName(userData.userName);
       setRoomName(userData.roomName);
-      socket.emit('join', userData.roomName);
+      socket.emit('join', userData.roomName,userName);
 
       setLogin(true);
     }
@@ -33,6 +33,7 @@ function App() {
   
   const LogOut = ()=>
   {
+    socket.emit('left',roomName,userName);
     localStorage.clear();
     setLogin(false);
   }
@@ -50,7 +51,7 @@ function App() {
     }
     //session saved
     localStorage.setItem('user',JSON.stringify(loginObject));
-    socket.emit('join', roomName);
+    socket.emit('join', roomName,userName);
   }
 
   const SendMessage = () => {
